@@ -1,314 +1,210 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Elite – Join Now</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ElitePips</title>
 
   <style>
-    :root{
-      --bg:#ffffff;
-      --page-bg:#020617;
-      --card-bg:#f9fafb;
-      --text:#111827;
-      --accent:#16a34a;
-      --danger:#ef4444;
-    }
-
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    }
-
+    *{box-sizing:border-box;margin:0;padding:0}
     body{
-      min-height:100vh;
-      background:radial-gradient(circle at 0 0,#1e293b,#020617 55%,#000 100%);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:#f0f4f3;
+      color:#0b1220;
+      padding:20px;
       display:flex;
       justify-content:center;
-      align-items:center;
-      padding:22px 10px;
     }
 
-    .page{
-      background:var(--card-bg);
-      max-width:480px;
+    .wrap{
       width:100%;
-      border-radius:20px;
-      box-shadow:0 20px 50px rgba(0,0,0,.55);
-      padding:10px 15px 20px;
-      text-align:center;
-      overflow:hidden;
-      position:relative;
-      animation:cardIn 0.7s ease-out forwards;
-      opacity:0;
-      transform:translateY(25px);
-    }
-
-    @keyframes cardIn{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    .page::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      border-radius:24px;
-      background:conic-gradient(from 180deg,#22c55e,#22d3ee,#6366f1,#22c55e);
-      opacity:.6;
-      z-index:-1;
-      animation:spinBorder 8s linear infinite;
-    }
-    .page::after{
-      content:"";
-      position:absolute;
-      inset:3px;
-      border-radius:18px;
-      background:var(--card-bg);
-      z-index:-1;
-    }
-
-    @keyframes spinBorder{
-      to{
-        transform:rotate(360deg);
-      }
-    }
-
-    .logo-wrap{
-      display:flex;
-      justify-content:center;
-      margin-bottom:10px;
-      animation:fadeUp 0.6s ease-out 0.2s both;
-    }
-
-    .logo{
-      width:110px;
-      height:110px;
-      border-radius:50%;
+      max-width:1080px;
       background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      border:3px solid #fecaca;
-      box-shadow:0 10px 25px rgba(248,113,113,.6);
+      border-radius:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+     
+      text-align:center;
     }
 
+    .top-banner{
+      background:#19a3f7;
+      color:#fff;
+      padding:8px 12px;
+      border-radius:8px;
+      font-weight:600;
+      margin-bottom:16px;
+    }
+
+    /* CENTER LOGO */
+    .logo{
+      width:90px;
+      height:90px;
+      border-radius:16px;
+      background:#e9f6ff;
+      margin:0 auto 14px;
+      overflow:hidden;
+    }
     .logo img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:cover;
     }
 
-    h1.title{
-      font-size:1.80rem;
-      color:#dc2626;
-      margin:10px 0 16px;
-      font-weight:900;
-      letter-spacing:.03em;
-      animation:fadeUp 0.6s ease-out 0.35s both;
-    }
+    .heading{margin:10px 0 6px;}
+    .heading h1{font-size:20px;font-weight:700;line-height:1.3;}
+    .accent{color:#0aa3ff;}
 
-    .points{
-      text-align:left;
-      margin:0 auto 22px;
-      max-width:410px;
-      font-size:1rem;
-      line-height:1.5;
-      color:var(--text);
-      list-style:none;
-    }
-
-    .points li{
-      display:flex;
-      align-items:flex-start;
-      gap:8px;
-      margin-bottom:8px;
-      opacity:0;
-      transform:translateY(12px);
-      animation:fadeUp 0.55s ease-out forwards;
-    }
-
-    .points li:nth-child(1){ animation-delay:0.45s;}
-    .points li:nth-child(2){ animation-delay:0.55s;}
-    .points li:nth-child(3){ animation-delay:0.65s;}
-    .points li:nth-child(4){ animation-delay:0.75s;}
-    .points li:nth-child(5){ animation-delay:0.85s;}
-    .points li:nth-child(6){ animation-delay:0.95s;}
-
-    .points .icon{
-      font-size:1.25rem;
-    }
-
-    .cta-btn{
-      display:block;
-      width:100%;
-      background:var(--accent);
-      color:#ffffff;
-      text-decoration:none;
-      font-size:1.1rem;
-      font-weight:800;
-      padding:14px 10px;
-      border-radius:999px;
-      margin:4px auto 10px;
-      box-shadow:0 14px 30px rgba(22,163,74,.6);
-      position:relative;
-      overflow:hidden;
-      animation:ctaPop 0.7s ease-out 1.1s both,
-               pulseGlow 2.4s ease-in-out 1.6s infinite;
-    }
-
-    .cta-btn span.wave{
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at 0 0,rgba(255,255,255,.35),transparent 55%);
-      opacity:0;
-      animation:shine 2.8s linear 1.4s infinite;
-    }
-
-    .cta-btn:active{
-      transform:translateY(1px);
-      box-shadow:0 8px 18px rgba(22,163,74,.7);
-    }
-
-    .sub-text{
-      font-size:.9rem;
-      color:var(--danger);
-      margin-top:6px;
+    .sub-title{
+      color:#0b6b2e;
       font-weight:700;
-      animation:blink 1.3s ease-in-out 1.4s infinite;
+      margin-bottom:6px;
     }
 
-    .footer-note{
-      margin-top:12px;
-      font-size:.74rem;
-      color:#6b7280;
-      line-height:1.4;
-      animation:fadeUp 0.6s ease-out 1.3s both;
+    .stats{
+      margin-bottom:12px;
+      color:#444;
+      font-weight:600;
     }
 
-    footer{
-      margin-top:18px;
-      font-size:.78rem;
-      color:#6b7280;
-      text-align:center;
-      line-height:1.6;
-      animation:fadeUp 0.6s ease-out 1.5s both;
+    .desc{
+      padding:10px;
+      font-size:14px;
+      margin-bottom:16px;
+      color:#333;
+    }
+    .desc small{color:#777;}
+
+    .cta{margin-bottom:14px;}
+
+    .btn-telegram{
+      background:linear-gradient(180deg,#0b7b2b,#045d1f);
+      color:#fff;
+      padding:14px 32px;
+      border-radius:40px;
+      font-weight:800;
+      font-size:18px;
+      text-decoration:none;
+      display:inline-block;
+      animation:pulseBtn 2s infinite ease-in-out;
+      box-shadow:0 0 20px rgba(11,123,43,0.4);
     }
 
-    footer a{
-      color:#2563eb;
+    @keyframes pulseBtn{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+      100%{transform:scale(1)}
+    }
+
+    .timer-row{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin-bottom:14px;
+    }
+    .timer-pill{
+      background:#e6f5ff;
+      padding:8px 14px;
+      border-radius:20px;
+      font-weight:700;
+    }
+
+    .note{
+      font-size:14px;
+      color:#333;
+      margin-top:6px;
+    }
+
+    .footer-links{
+      margin-top:20px;
+      font-size:13px;
+      line-height:1.7;
+    }
+    .footer-links a{
+      color:#0a84ff;
       text-decoration:none;
       font-weight:600;
     }
 
-    footer a:hover{
-      text-decoration:underline;
-    }
-
-    @keyframes fadeUp{
-      from{opacity:0; transform:translateY(14px);}
-      to{opacity:1; transform:translateY(0);}
-    }
-
-    @keyframes ctaPop{
-      0%{transform:scale(.9);}
-      60%{transform:scale(1.05);}
-      100%{transform:scale(1);}
-    }
-
-    @keyframes pulseGlow{
-      0%,100%{box-shadow:0 14px 30px rgba(22,163,74,.55);}
-      50%{box-shadow:0 18px 40px rgba(22,163,74,.9);}
-    }
-
-    @keyframes blink{
-      0%,100%{opacity:1;}
-      40%{opacity:.35;}
-      70%{opacity:1;}
-    }
-
-    @keyframes shine{
-      0%{opacity:0; transform:translateX(-100%);}
-      20%{opacity:1;}
-      60%{opacity:0;}
-      100%{transform:translateX(140%);}
+    .fb-disclaimer{
+      font-size:12px;
+      color:#777;
+      margin-top:20px;
+      line-height:1.5;
+      padding:0 10px;
     }
   </style>
+
   
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1172014651561018');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1172014651561018&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-
 </head>
+
 <body>
-  <div class="page">
+  <div class="wrap">
 
-    <!-- LOGO WITH IMAGE -->
-    <div class="logo-wrap">
-      <div class="logo">
-        <img src="logo.png" alt="ElitePips Logo">
-      </div>
+    <div class="top-banner">Don't have Telegram yet? Try it now</div>
+
+    <!-- CENTER LOGO -->
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
     </div>
 
-    <h1 class="title">🔥 ElitePips 🔥</h1>
-
-    <ul class="points">
-  <li><span class="icon">👉</span><span>Daily market insights you can’t afford to miss</span></li>
-  <li><span class="icon">👉</span><span>Premium strategies shared before they go mainstream</span></li>
-  <li><span class="icon">👉</span><span>Exclusive indicator secrets you won’t find anywhere else</span></li>
-  <li><span class="icon">👉</span><span>A fast-growing trader community—don’t be the last to join</span></li>
-  <li><span class="icon">👉</span><span>Only serious learners get in</span></li>
-  <li><span class="icon">👉</span><span>1,5k+ traders are already leveling up… are you?</span></li>
-</ul>
-
-
-    <!-- 100% Meta Safe CTA -->
-    <a class="cta-btn"
-   href="https://telegram.me/+GOxEmrLloOk1MzU1"
-   target="_blank"
-   onclick="fbq('track', 'Subscribe');">
-   <span class="wave"></span>
-   Join Our Premium Learning Community
-</a>
-
-
-    <div class="sub-text">🔥 Only a Few Seats Left — Join the Community Now
-</div>
-
-    <div class="footer-note">
-      Disclaimer: All material is for educational purposes only.  
-      No financial advice or guarantees of results.
+    <div class="heading">
+      <h1>Learn how to Trade with <span class="accent">The ElitePips Experts</span></h1>
     </div>
 
-    <footer>
-      <a href="https://elitepips.online/terms/" target="_blank">Terms</a> |
-      <a href="https://elitepips.online/privacy/" target="_blank">Privacy</a> |
-      <a href="https://elitepips.online/disclaimer/" target="_blank">Disclaimer</a>
-      <br><br>
-      This site is not part of Facebook™️ or Meta Platforms Inc.  
-      This site is NOT endorsed by Facebook™️ in any way.
-    </footer>
+    <div class="sub-title">Unlock the Secrets to Crypto & Forex Success</div>
+    <div class="stats">8,555 Subscribers</div>
+
+    <div class="desc">
+      The Best Crypto and Forex Signals For Educational Use Only.<br>
+      <small>Views are purely for learning, not financial advice.</small>
+    </div>
+
+    <div class="cta">
+      <a class="btn-telegram" href="https://telegram.me/+Mwe20pTScRliOWQ1" target="_blank">
+        View In Telegram
+      </a>
+    </div>
+
+    <div class="timer-row">
+      <div class="timer-pill" id="minutes">10 Min</div>
+      <div class="timer-pill" id="seconds">00 Sec</div>
+    </div>
+
+    <div class="note">
+      If you have <b>Telegram</b> you can join <b>ElitePips</b> instantly
+    </div>
+
+    <div class="footer-links">
+      
+      <a href="https://ElitePips.online/privacy" target="_blank">Privacy Policy</a> •
+      <a href="https://ElitePips.online/disclaimer" target="_blank">Disclaimer</a> •
+      <a href="https://ElitePips.online/terms" target="_blank">Terms & Conditions</a>
+    </div>
+
+    <div class="fb-disclaimer">
+      This site is not a part of the Facebook™ website or Facebook Inc.  
+      Additionally, this site is NOT endorsed by Facebook™ in any way.  
+      Facebook™ is a trademark of Facebook Inc.
+    </div>
 
   </div>
+
+  <script>
+    let remaining = 10 * 60;
+    const m = document.getElementById("minutes");
+    const s = document.getElementById("seconds");
+
+    function updateTimer(){
+      if(remaining <= 0) return;
+      const min = Math.floor(remaining / 60);
+      const sec = remaining % 60;
+      m.textContent = (min < 10 ? "0"+min : min) + " Min";
+      s.textContent = (sec < 10 ? "0"+sec : sec) + " Sec";
+      remaining--;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+
 </body>
 </html>
